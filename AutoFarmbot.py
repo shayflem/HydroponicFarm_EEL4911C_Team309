@@ -3,8 +3,8 @@ from farmbot import Farmbot, FarmbotToken
 # Before we begin, we must download an access token from the
 # API. To avoid copy/pasting passwords, it is best to create
 # an access token and then store that token securely:
-raw_token = FarmbotToken.download_token("test@example.com",
-                                        "password",
+raw_token = FarmbotToken.download_token("shaylah1.fleming@famu.edu",
+                                        "HydroTeam309!",
                                         "https://my.farm.bot")
 
 # This token is then passed to the Farmbot constructor:
