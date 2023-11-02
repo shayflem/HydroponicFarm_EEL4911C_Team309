@@ -53,7 +53,7 @@ class MyHandler:
     def gohome(self,bot,mqtt_client):
         request_id3 = bot.find_home()
         print("FIND_HOME REQUEST ID: " + request_id3)
-    gohome(fb)
+        #gohome(fb)
 
     def menu():
         while True:
@@ -63,19 +63,19 @@ class MyHandler:
             print("3. Quit")
             choice = input("Enter your choice (1/2/3): ")
 
-        if choice == '1':
-            move_to_position()
-        elif choice == '2':
-            gohome()
-        elif choice == '3':
+            if choice == '1':
+                move_to_position()
+            elif choice == '2':
+             gohome()
+            elif choice == '3':
             #fb.disconnect()
-            exit()
-        else:
-            print("Invalid choice. Please try again.")
+                exit()
+            else:
+                print("Invalid choice. Please try again.")
 
-    handler = MyHandler()  
-    fb.connect(handler)
-    print("This line will not execute. `connect()` is a blocking call.")          
+handler = MyHandler()  
+fb.connect(handler)
+print("This line will not execute. `connect()` is a blocking call.")          
 
-    menu()
+MyHandler.menu()
     #fb.disconnect()
