@@ -7,16 +7,35 @@ raw_token = FarmbotToken.download_token("shaylah1.fleming@famu.edu",
 
 fb = Farmbot(raw_token)
 
+class MyMenu:
+     def menu():
+        while True:
+            print("\n===== FarmBot Control Menu =====")
+            print("1. Move to a specific position")
+            print("2. Go back to home position")
+            print("3. Quit")
+            choice = input("Enter your choice (1/2/3): ")
+
+            if choice == '1':
+                move_to_position()
+            elif choice == '2':
+                gohome()
+            elif choice == '3':
+            #fb.disconnect()
+                exit()
+            else:
+                print("Invalid choice. Please try again.")                
+      
+MyMenu.menu()
+
 class MyHandler:
     
     def on_connect(self, bot, mqtt_client):
         
         request_id1 = bot.move_absolute(x=10, y=20, z=30)
-
         print("MOVE_ABS REQUEST ID: " + request_id1)
 
         request_id2 = bot.send_message("Hello, world!")
-
         print("SEND_MESSAGE REQUEST ID: " + request_id2)
 
     def on_change(self, bot, state):
@@ -39,7 +58,6 @@ class MyHandler:
     def on_error(self, bot, response):
  
         print("ID of failed request: " + response.id)
-
         print("Reason(s) for failure: " + str(response.errors))
 
     def move_to_position():
@@ -55,27 +73,9 @@ class MyHandler:
         print("FIND_HOME REQUEST ID: " + request_id3)
         #gohome(fb)
 
-    def menu():
-        while True:
-            print("\n===== FarmBot Control Menu =====")
-            print("1. Move to a specific position")
-            print("2. Go back to home position")
-            print("3. Quit")
-            choice = input("Enter your choice (1/2/3): ")
-
-            if choice == '1':
-                move_to_position()
-            elif choice == '2':
-             gohome()
-            elif choice == '3':
-            #fb.disconnect()
-                exit()
-            else:
-                print("Invalid choice. Please try again.")
-
 handler = MyHandler()  
 fb.connect(handler)
-print("This line will not execute. `connect()` is a blocking call.")          
+print("This line will not execute. `connect()` is a blocking call.")   
 
-MyHandler.menu()
+
     #fb.disconnect()
