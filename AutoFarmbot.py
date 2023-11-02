@@ -42,8 +42,40 @@ class MyHandler:
 
         print("Reason(s) for failure: " + str(response.errors))
 
+    def move_to_position():
+        x = float(input("Enter X coordinate: "))
+        y = float(input("Enter Y coordinate: "))
+        z = float(input("Enter Z coordinate: "))
+        request_id = fb.move_absolute(x=x, y=y, z=z, speed=100.0)
+        print(f"MOVE_ABS REQUEST ID: {request_id}")
 
-handler = MyHandler()
 
-fb.connect(handler)
-print("This line will not execute. `connect()` is a blocking call.")
+    def gohome(self,bot,mqtt_client):
+        request_id3 = bot.find_home()
+        print("FIND_HOME REQUEST ID: " + request_id3)
+    gohome(fb)
+
+    def menu():
+        while True:
+            print("\n===== FarmBot Control Menu =====")
+            print("1. Move to a specific position")
+            print("2. Go back to home position")
+            print("3. Quit")
+            choice = input("Enter your choice (1/2/3): ")
+
+        if choice == '1':
+            move_to_position()
+        elif choice == '2':
+            gohome()
+        elif choice == '3':
+            #fb.disconnect()
+            exit()
+        else:
+            print("Invalid choice. Please try again.")
+
+    handler = MyHandler()  
+    fb.connect(handler)
+    print("This line will not execute. `connect()` is a blocking call.")          
+
+    menu()
+    #fb.disconnect()
